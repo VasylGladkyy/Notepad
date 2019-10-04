@@ -1,3 +1,5 @@
+require 'date'
+
 class Task<Post
   def initialize
     super
@@ -5,9 +7,17 @@ class Task<Post
   end
 
   def read_from_console
+    puts "Що портрібно зробити?"
+    @text=STDIN.gets.chomp
+    puts "До якого числа треба зробити? (Будь ласка вкажіть дату в форматі ДД.ММ.РРРР"
+    input=STDIN.gets.chomp
+    @due_date=Date.parse input
   end
 
-  def to_string
+  def to_strings
+    time_string="Створено: #{@created_at.strftime("#{self.class.name}_%Y-%m-%d_%H-%M-%S.txt")} \n\r \n\r"
+    deadline="Крайній термін: #{@due_date}"
+    return [deadline,@text,time_string]
   end
 
 
