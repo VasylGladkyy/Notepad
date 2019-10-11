@@ -6,7 +6,7 @@ require_relative 'task.rb'
 puts "Привіт, я твій блокнот!"
 puts "Що хочете записати в блокнот?"
 
-сhoices=Post.post_types
+сhoices=Post.new_post.keys
 
 choice=-1
 
@@ -15,9 +15,9 @@ until choice>=0 && choice<сhoices.size
   choice=STDIN.gets.to_i
 end
 
-entry=Post.create(choice)
+entry=Post.create(сhoices[choice])
 
 entry.read_from_console
-entry.save
+id=entry.save_to_db
 
-puts "Запис збережено!"
+puts "Запис збережено!, id=#{id}"
