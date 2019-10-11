@@ -28,4 +28,9 @@ class Task<Post
                     }
     )
   end
+
+  def load_data(data_hash)
+    super(data_hash)
+    @due_date=Time.parse(data_hash['created_at'])
+  end
 end
